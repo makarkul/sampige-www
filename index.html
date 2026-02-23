@@ -130,6 +130,33 @@
   .footer-social svg { opacity: 0.7; transition: opacity 0.3s; }
   .footer-social:hover svg { opacity: 1; }
 
+  /* News section */
+  .news { max-width: 1200px; margin: 0 auto; }
+  .news-header { text-align: center; margin-bottom: 3rem; }
+  .news-header .section-desc { margin: 0 auto; }
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 400px)); gap: 1.5rem; justify-content: center; }
+  .news-card { background: white; border-radius: 16px; padding: 1.8rem; border: 1px solid var(--green-ghost); transition: all 0.3s ease; display: flex; flex-direction: column; gap: 0.6rem; }
+  .news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(15,90,35,0.08); border-color: var(--green-pale); }
+  .news-card-meta { display: flex; align-items: center; gap: 0.6rem; }
+  .news-card-date { font-size: 0.75rem; font-weight: 600; color: var(--text-light); font-family: 'PT Mono', monospace; }
+  .news-card-source { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-light); background: var(--green-ghost); padding: 0.15rem 0.5rem; border-radius: 4px; }
+  .news-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--green-deep); line-height: 1.4; }
+  .news-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; flex: 1; }
+  .news-card a.read-more { font-size: 0.82rem; font-weight: 600; color: var(--green-mid); text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; margin-top: auto; transition: color 0.2s; }
+  .news-card a.read-more:hover { color: var(--green-deep); }
+  .news-archive-wrap { text-align: center; margin-top: 2.5rem; }
+  .news-archive-toggle { background: none; border: 1.5px solid var(--green-pale); color: var(--green-mid); padding: 0.55rem 1.4rem; border-radius: 6px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .news-archive-toggle:hover { background: var(--green-ghost); border-color: var(--green-light); }
+  .news-archive { display: none; margin-top: 2rem; border-top: 1px solid var(--green-ghost); padding-top: 2rem; }
+  .news-archive.open { display: block; }
+  .news-archive-list { list-style: none; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem; }
+  .news-archive-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .news-archive-item .news-card-date { min-width: 90px; padding-top: 0.1rem; }
+  .news-archive-item a { font-size: 0.93rem; color: var(--green-deep); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
+  .news-archive-item a:hover { color: var(--green-mid); text-decoration: underline; }
+
+
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes float { 0%, 100% { transform: translateY(0) rotate(var(--r, -30deg)); } 50% { transform: translateY(-15px) rotate(var(--r, -30deg)); } }
   .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -181,6 +208,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#focus">Focus</a></li>
     <li><a href="#team">Team</a></li>
+    <li><a href="#news">News</a></li>
     <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
   </ul>
 </nav>
@@ -278,6 +306,30 @@
         <div class="founder-title">VP, Systems</div>
         <div class="founder-bio">Semiconductors &amp; AI-driven platforms. Founder Eywa Media. Deep expertise in system architecture &amp; product development. Saankhya Labs, Tata Elxsi, Rangsons Aerospace.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="news" style="background: var(--warm-bg);">
+  <div class="news">
+    <div class="news-header reveal">
+      <span class="section-label">Latest Updates</span>
+      <h2 class="section-title">News &amp; Announcements</h2>
+      <p class="section-desc">Stay up to date with Sampige Semiconductors' milestones, partnerships, and progress.</p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card reveal">
+        <div class="news-card-meta">
+          <span class="news-card-date">23 Feb 2026</span>
+          <span class="news-card-source">ANI News</span>
+        </div>
+        <h3>BharatGen ties up with Parag Naik's semiconductor venture for Sovereign AI hardware</h3>
+        <p>BharatGen has partnered with Sampige Semiconductors, the venture led by Parag Naik, to develop indigenous hardware for sovereign AI — a major step toward India's self-reliant AI infrastructure.</p>
+        <a href="https://www.aninews.in/news/national/general-news/bharatgen-ties-up-with-parag-naiks-semiconductor-venture-for-sovereign-ai-hardware20260223092901/" target="_blank" rel="noopener" class="read-more">Read article &#8594;</a>
+      </div>
+    </div>
+    <div class="news-archive-wrap">
+      <a href="news-archive.html" class="news-archive-toggle">View all updates &#8594;</a>
     </div>
   </div>
 </section>
