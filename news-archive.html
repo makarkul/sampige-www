@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>News Archive — Sampige Semiconductors</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-deep: #0F5A23; --green-mid: #1B7A2E;
@@ -15,9 +15,15 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: var(--warm-bg); color: var(--text-dark); }
+  html[lang="kn"] body { font-family: 'Noto Sans Kannada', 'DM Sans', sans-serif; }
   .container { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
-  .back-link { display: inline-block; margin-bottom: 2rem; color: var(--green-mid); text-decoration: none; font-weight: 500; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+  .back-link { color: var(--green-mid); text-decoration: none; font-weight: 500; }
   .back-link:hover { color: var(--green-deep); }
+  .lang-toggle { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--green-pale); border-radius: 6px; overflow: hidden; font-size: 0.78rem; font-weight: 600; }
+  .lang-toggle button { background: none; border: none; padding: 0.35rem 0.7rem; cursor: pointer; font-family: inherit; font-size: 0.78rem; font-weight: 600; color: var(--text-mid); transition: all 0.2s; }
+  .lang-toggle button.active { background: var(--green-deep); color: white; }
+  .lang-toggle button:not(.active):hover { background: var(--green-ghost); }
   h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--green-deep); margin-bottom: 0.5rem; }
   .subtitle { color: var(--text-light); margin-bottom: 3rem; }
   .year-group { margin-bottom: 2.5rem; }
@@ -32,9 +38,15 @@
 </head>
 <body>
 <div class="container">
-  <a href="index.html" class="back-link">&larr; Back to Home</a>
-  <h1>News Archive</h1>
-  <p class="subtitle">All news and updates about Sampige Semiconductors.</p>
+  <div class="top-bar">
+    <a href="index.html" class="back-link" data-i18n="archive_back">&larr; Back to Home</a>
+    <div class="lang-toggle">
+      <button onclick="setLanguage('en')" class="active" id="lang-en">EN</button>
+      <button onclick="setLanguage('kn')" id="lang-kn">ಕನ್ನಡ</button>
+    </div>
+  </div>
+  <h1 data-i18n="archive_title">News Archive</h1>
+  <p class="subtitle" data-i18n="archive_subtitle">All news and updates about Sampige Semiconductors.</p>
 
   <div class="year-group">
     <div class="year-label">2026</div>
@@ -51,5 +63,41 @@
 
   </div>
 </div>
+
+<script>
+  var translations = {
+    en: {
+      archive_back: '\u2190 Back to Home',
+      archive_title: 'News Archive',
+      archive_subtitle: 'All news and updates about Sampige Semiconductors.',
+      page_title: 'News Archive \u2014 Sampige Semiconductors'
+    },
+    kn: {
+      archive_back: '\u2190 ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ',
+      archive_title: 'ಸುದ್ದಿ ಆರ್ಕೈವ್',
+      archive_subtitle: 'Sampige Semiconductors ಬಗ್ಗೆ ಎಲ್ಲಾ ಸುದ್ದಿ ಮತ್ತು ಮಾಹಿತಿಗಳು.',
+      page_title: 'ಸುದ್ದಿ ಆರ್ಕೈವ್ \u2014 Sampige Semiconductors'
+    }
+  };
+
+  function setLanguage(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    document.documentElement.lang = lang;
+    document.title = translations[lang].page_title;
+    localStorage.setItem('lang', lang);
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-kn').classList.toggle('active', lang === 'kn');
+  }
+
+  (function() {
+    var saved = localStorage.getItem('lang');
+    if (saved && saved !== 'en') setLanguage(saved);
+  })();
+</script>
 </body>
 </html>
